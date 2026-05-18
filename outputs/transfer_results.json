@@ -1,0 +1,56 @@
+{
+    "experiment": "Isaac Sim to Real Transfer - YOLOv8 Zero-Shot",
+    "objective": "Reduce sim-to-real gap using domain randomization without real training data",
+    "sim_to_real_gap": {
+          "baseline_sim_only": 0.18,
+          "with_domain_randomization": 0.06,
+          "gap_reduction_pct": 66.7
+    },
+    "yolov8_performance": {
+          "model": "YOLOv8n (nano)",
+          "training_data": "Isaac Sim synthetic only (no real images)",
+          "inference_device": "NVIDIA Jetson AGX Orin",
+          "inference_fps": 47.3,
+          "inference_ms": 21.1
+    },
+    "detection_metrics": {
+          "simulation": {
+                  "mAP50": 0.892,
+                  "mAP50_95": 0.724,
+                  "precision": 0.913,
+                  "recall": 0.876
+          },
+          "real_world_no_DR": {
+                  "mAP50": 0.641,
+                  "mAP50_95": 0.489,
+                  "precision": 0.702,
+                  "recall": 0.591
+          },
+          "real_world_with_DR": {
+                  "mAP50": 0.847,
+                  "mAP50_95": 0.698,
+                  "precision": 0.881,
+                  "recall": 0.814
+          }
+    },
+    "domain_randomization_params": {
+          "lighting_variation": true,
+          "texture_randomization": true,
+          "camera_noise": true,
+          "object_placement_random": true,
+          "background_randomization": true,
+          "synthetic_images_generated": 50000
+    },
+    "zero_shot_comparison": {
+          "categories_tested": ["Person", "Chair", "Door", "Table", "Wall obstacle"],
+          "avg_accuracy_without_DR": 0.62,
+          "avg_accuracy_with_DR": 0.84,
+          "improvement_pct": 35.5
+    },
+    "metadata": {
+          "date": "2026-05-18",
+          "isaac_sim_version": "2023.1",
+          "yolov8_version": "8.0.186",
+          "total_sim_episodes": 500
+    }
+}
